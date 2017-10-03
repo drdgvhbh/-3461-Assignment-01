@@ -1,12 +1,12 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import util.JSONLogger;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.net.URL;
 
 
 public class Program extends Application {
@@ -20,27 +20,26 @@ public class Program extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-        FileInputStream fxmlStream;
+        Parent root;
+        String currentFileName = "components/Program.fxml";
         try {
-            fxmlStream = new FileInputStream(
-                    new File(this.getClass().getClassLoader().getResource("fxml/Program.fxml").toURI()));
+            URL fxmlFile = getClass().getResource(currentFileName);
+            root = FXMLLoader.load(fxmlFile);
         } catch (NullPointerException e) {
-            JSONLogger.err("File not found.", new Pair<>("File", "Program.fxml"));
+            JSONLogger.err("File not found.", new Pair<>("File", currentFileName));
             JSONLogger.info("Application is terminating.");
             return;
         }
 
-        // Create the Pane and all Details
-        VBox root = (VBox) loader.load(fxmlStream);
+        currentFileName = "resources/stylesheets/Program.css";
+        try {
+            root.getStylesheets().add(getClass().getResource(currentFileName).toExternalForm());
+        } catch (NullPointerException e) {
+            JSONLogger.warn("File not found.", new Pair<>("File", currentFileName));
+        }
 
-        // Create the Scene
         Scene scene = new Scene(root);
-        // Set the Scene to the Stage
         primaryStage.setScene(scene);
-        // Set the Title to the Stage
-        primaryStage.setTitle("A simple FXML Example");
-        // Display the Stage
         primaryStage.show();
 
     }

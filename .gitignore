@@ -3,3 +3,6 @@
 
 # User-specific stuff:
 .idea/**/workspace.xml
+
+# Windows crap
+Thumbs.db

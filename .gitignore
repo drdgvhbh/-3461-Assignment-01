@@ -4,7 +4,7 @@
 # User-specific stuff:
 .idea/**/workspace.xml
 .idea/codeStyleSettings.xml
-.idea/dictionaries/drdgvhbh.xml
+.idea/dictionaries/**
 
 # Windows crap
 Thumbs.db

@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import util.JSONLogger;
@@ -19,6 +21,9 @@ import java.util.ResourceBundle;
 
 
 public class Program extends Application implements Initializable {
+    @FXML
+    private StackPane imageBox1, imageBox2, imageBox3, imageBox4;
+
     @FXML
     private ImageBoxController imageBox1Controller, imageBox2Controller, imageBox3Controller, imageBox4Controller;
 
@@ -76,11 +81,13 @@ public class Program extends Application implements Initializable {
         Model model = new Model();
 
         // Intialize the controllers after they have been injected.
+        imageBox1.setId("1");
         imageBox1Controller.initModel(model);
         imageBox2Controller.initModel(model);
         imageBox3Controller.initModel(model);
         imageBox4Controller.initModel(model);
 
         startButtonController.initModel(model);
+
     }
 }

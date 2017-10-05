@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane alignment="TOP_LEFT" prefHeight="300.0" prefWidth="220.0" style="-fx-background-color: #DEB887;" styleClass="imageBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.ImageBox.ImageBoxController">
+   <FlowPane.margin>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </FlowPane.margin>
+   <children>
+      <Button fx:id="imageButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="300.0" prefWidth="220.0" textAlignment="CENTER">
+          <style>
+              -fx-padding: 0;
+          </style>
+         <font>
+            <Font name="Cambria" size="29.0" />
+         </font>
+      </Button>
+   </children>
+</StackPane>

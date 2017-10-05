@@ -8,31 +8,31 @@ import javafx.util.Pair;
 
 public class JSONLogger {
     @SafeVarargs
-    public static void err(String message, Pair<String, Object>... args) throws JsonProcessingException {
+    public static void err(String message, Pair<String, Object>... args) {
         System.out.println("ERROR: " + message);
         JSONLogger.log(args);
     }
 
     @SafeVarargs
-    public static void info(String message, Pair<String, Object>... args) throws JsonProcessingException {
+    public static void info(String message, Pair<String, Object>... args) {
         System.out.println("INFO: " + message);
         JSONLogger.log(args);
     }
 
     @SafeVarargs
-    public static void warn(String message, Pair<String, Object>... args) throws JsonProcessingException {
+    public static void warn(String message, Pair<String, Object>... args) {
         System.out.println("WARNING: " + message);
         JSONLogger.log(args);
     }
 
     @SafeVarargs
-    public static void debug(String message, Pair<String, Object>... args) throws JsonProcessingException {
+    public static void debug(String message, Pair<String, Object>... args) {
         System.out.println("DEBUG: " + message);
         JSONLogger.log(args);
     }
 
     @SafeVarargs
-    private static void log(Pair<String, Object>... args) throws JsonProcessingException {
+    private static void log(Pair<String, Object>... args) {
         if (args.length == 0) {
             return;
         }
@@ -44,7 +44,12 @@ public class JSONLogger {
             ((ObjectNode) rootNode).put(p.getKey().toString(), p.getValue().toString());
         }
 
-        String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
+        String jsonString = "";
+        try {
+            jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
+        } catch (JsonProcessingException e) {
+            System.out.println("Error processing log.");
+        }
         System.out.println(jsonString);
     }
 }

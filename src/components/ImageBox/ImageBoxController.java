@@ -4,8 +4,12 @@ import components.AbstractController;
 import components.AnimalTree.AnimalNode;
 import components.Model;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -22,7 +26,43 @@ public class ImageBoxController extends AbstractController {
 
     @Override
     public void initModel(Model model) throws IllegalStateException {
+        initModel(model, null);
+
+    }
+
+    public void initModel(Model model, Model.ImageBoxId imageBoxId) throws IllegalStateException {
         super.initModel(model);
+        this.id = imageBoxId;
+
+        StringProperty imgURL = model.getCurrentAnimals().get(this.id);
+        if (imgURL != null) {
+            Background background = new Background(
+                new BackgroundImage(
+                    new Image(getClass().getResource(imgURL.get()).toExternalForm(), 220, 300, true, true),
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.CENTER,
+                    BackgroundSize.DEFAULT
+                )
+            );
+            imageButton.setBackground(background);
+
+            model.getCurrentAnimals().get(this.id).addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    Background background = new Background(
+                            new BackgroundImage(
+                                    new Image(getClass().getResource(imgURL.get()).toExternalForm(), 220, 300, true, true),
+                                    BackgroundRepeat.NO_REPEAT,
+                                    BackgroundRepeat.NO_REPEAT,
+                                    BackgroundPosition.CENTER,
+                                    BackgroundSize.DEFAULT
+                            )
+                    );
+                    imageButton.setBackground(background);
+                }
+            });
+        }
 
         imageButton.setOnAction((event -> {
             System.out.println("Hello world!");
@@ -33,10 +73,6 @@ public class ImageBoxController extends AbstractController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(imageButton.getId());
-    }
-
-    public void setId(Model.ImageBoxId id) {
-        this.id = id;
     }
 
 }

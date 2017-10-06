@@ -46,7 +46,7 @@
       </SplitPane>
    </top>
    <center>
-      <FlowPane prefHeight="573.0" prefWidth="540.0" style="-fx-background-color: #00FFFF;" BorderPane.alignment="CENTER">
+      <FlowPane prefHeight="573.0" prefWidth="540.0" BorderPane.alignment="CENTER" styleClass="centerBackground">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>

@@ -1,3 +1,7 @@
+.centerBackground {
+    -fx-background-color: bisque;
+}
+
 .progressBox {
 
 }

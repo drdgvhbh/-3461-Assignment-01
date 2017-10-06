@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 
 import java.beans.PropertyChangeListener;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Model {
     public enum ImageBoxId {
@@ -19,7 +20,7 @@ public class Model {
     private AnimalTree animals;
     private Map<ImageBoxId, StringProperty> currentAnimals;
 
-    public Model() {
+    public Model() throws InterruptedException {
         // Setup the connection between all our animal images
         animals = new AnimalTree();
         buildAnimalTree();
@@ -43,7 +44,7 @@ public class Model {
         animals.addAnimal("Bears", null,"Mammals");
 
         //Fourth level
-        animals.addAnimal("BrownBear","@../../resources/brown_bear.jpg", "Bears");
+        animals.addAnimal("BrownBear","../../resources/brown_bear.jpg", "Bears");
     }
 
     public Map<ImageBoxId, StringProperty> getCurrentAnimals() {

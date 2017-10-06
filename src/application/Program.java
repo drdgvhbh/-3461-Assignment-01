@@ -46,9 +46,16 @@ public class Program extends Application implements Initializable {
 
         String currentFileName = "Program.fxml";
 
-        // Load the FXML file and controllers.
+        // Load the FXML file and controllers and attach CSS files.
         try {
             root = FXMLLoader.load(getClass().getResource(currentFileName));
+            currentFileName = "../resources/stylesheets/Program.css";
+            root.getStylesheets().add(getClass().getResource(currentFileName).toExternalForm());
+
+            currentFileName = "../components/ImageBox/ImageBox.fxml";
+            Parent current = FXMLLoader.load(getClass().getResource(currentFileName));
+            currentFileName = "../resources/stylesheets/ImageBox.css";
+            current.getStylesheets().add(getClass().getResource(currentFileName).toExternalForm());
 
             currentFileName = "../components/ImageBox/ImageBox.fxml";
         } catch (NullPointerException e) {
@@ -61,15 +68,6 @@ public class Program extends Application implements Initializable {
             return;
         }
 
-        currentFileName = "../resources/stylesheets/Program.css";
-
-        // Attach CSS
-        try {
-            root.getStylesheets().add(getClass().getResource(currentFileName).toExternalForm());
-        } catch (NullPointerException e) {
-            JSONLogger.warn("File not found.", new Pair<>("File", currentFileName));
-        }
-
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -78,11 +76,15 @@ public class Program extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Model model = new Model();
+        Model model = null;
+        try {
+            model = new Model();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // Intialize the controllers after they have been injected.
-        imageBox1.setId("1");
-        imageBox1Controller.initModel(model);
+        imageBox1Controller.initModel(model, Model.ImageBoxId.TOP_LEFT);
         imageBox2Controller.initModel(model);
         imageBox3Controller.initModel(model);
         imageBox4Controller.initModel(model);

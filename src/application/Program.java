@@ -40,7 +40,7 @@ public class Program extends Application implements Initializable {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         Parent root;
         FXMLLoader loader;
 
@@ -62,10 +62,6 @@ public class Program extends Application implements Initializable {
             JSONLogger.err("File not found.", new Pair<>("File", currentFileName));
             JSONLogger.info("Application is terminating.");
             return;
-        } catch (IOException e) {
-            JSONLogger.err("Error parsing file.", new Pair<>("File", currentFileName));
-            JSONLogger.info("Application is terminating.");
-            return;
         }
 
         Scene scene = new Scene(root);
@@ -77,17 +73,13 @@ public class Program extends Application implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Model model = null;
-        try {
-            model = new Model();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        model = new Model();
 
         // Intialize the controllers after they have been injected.
         imageBox1Controller.initModel(model, Model.ImageBoxId.TOP_LEFT);
-        imageBox2Controller.initModel(model);
-        imageBox3Controller.initModel(model);
-        imageBox4Controller.initModel(model);
+        imageBox2Controller.initModel(model, Model.ImageBoxId.TOP_RIGHT);
+        imageBox3Controller.initModel(model, Model.ImageBoxId.BOTTOM_LEFT);
+        imageBox4Controller.initModel(model, Model.ImageBoxId.BOTTOM_RIGHT);
 
         startButtonController.initModel(model);
 

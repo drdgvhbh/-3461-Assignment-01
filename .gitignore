@@ -9,3 +9,6 @@
 # Windows crap
 Thumbs.db
 .idea/inspectionProfiles/
+
+# Other
+*.tmp

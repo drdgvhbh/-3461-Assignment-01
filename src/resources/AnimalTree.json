@@ -1,0 +1,18 @@
+{
+    "Animals": {
+        "Mammals": {
+            "Bears": {
+                "BrownBear": "../../resources/images/brown_bear.jpg"
+            },
+            "Giraffes": {
+                "Giraffe": "../../resources/images/giraffe.jpg"
+            },
+            "Pandas": {
+                "Panda": "../../resources/images/panda.jpg"
+            },
+            "Rabbits": {
+                "Rabbit": "../../resources/images/rabbit.jpg"
+            }
+        }
+    }
+}

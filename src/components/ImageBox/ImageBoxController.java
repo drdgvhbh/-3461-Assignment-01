@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.util.Pair;
+import util.JSONLogger;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -36,32 +38,41 @@ public class ImageBoxController extends AbstractController {
 
         StringProperty imgURL = model.getCurrentAnimals().get(this.id);
         if (imgURL != null) {
-            Background background = new Background(
-                new BackgroundImage(
-                    new Image(getClass().getResource(imgURL.get()).toExternalForm(), 220, 300, true, true),
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundPosition.CENTER,
-                    BackgroundSize.DEFAULT
-                )
-            );
-            imageButton.setBackground(background);
+            try {
+                Background background = new Background(
+                        new BackgroundImage(
+                                new Image(
+                                getClass().getResource(imgURL.get()).toExternalForm(),
+                                    imageButton.getPrefWidth(), imageButton.getPrefHeight(), true, true),
+                                BackgroundRepeat.NO_REPEAT,
+                                BackgroundRepeat.NO_REPEAT,
+                                BackgroundPosition.CENTER,
+                                BackgroundSize.DEFAULT
+                        )
+                );
+                imageButton.setBackground(background);
 
-            model.getCurrentAnimals().get(this.id).addListener(new ChangeListener<String>() {
-                @Override
-                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    Background background = new Background(
-                            new BackgroundImage(
-                                    new Image(getClass().getResource(imgURL.get()).toExternalForm(), 220, 300, true, true),
-                                    BackgroundRepeat.NO_REPEAT,
-                                    BackgroundRepeat.NO_REPEAT,
-                                    BackgroundPosition.CENTER,
-                                    BackgroundSize.DEFAULT
-                            )
-                    );
-                    imageButton.setBackground(background);
-                }
-            });
+                model.getCurrentAnimals().get(this.id).addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                        String newValue) {
+                        Background background = new Background(
+                                new BackgroundImage(
+                                        new Image(
+                                        getClass().getResource(imgURL.get()).toExternalForm(),
+                                            imageButton.getPrefWidth(), imageButton.getPrefHeight(), true, true),
+                                        BackgroundRepeat.NO_REPEAT,
+                                        BackgroundRepeat.NO_REPEAT,
+                                        BackgroundPosition.CENTER,
+                                        BackgroundSize.DEFAULT
+                                )
+                        );
+                        imageButton.setBackground(background);
+                    }
+                });
+            } catch (NullPointerException e) {
+                JSONLogger.err("Invalid image url.", new Pair<>("URL", imgURL.get()));
+            }
         }
 
         imageButton.setOnAction((event -> {
@@ -72,7 +83,6 @@ public class ImageBoxController extends AbstractController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(imageButton.getId());
     }
 
 }

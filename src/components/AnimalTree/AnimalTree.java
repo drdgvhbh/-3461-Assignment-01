@@ -16,15 +16,12 @@ public class AnimalTree {
 
     }
 
-    public void addRoot(String name, String imageURL) {
-        if (root != null) {
-            JSONLogger.err("Root already exists.", new Pair<>("Class", this.getClass().getName()));
-            throw new IllegalStateException();
-        }
-        this.root = new AnimalNode(name, imageURL);
-    }
-
     public void addAnimal(String name, String imageURL, String parent) {
+        if (root == null) {
+            this.root = new AnimalNode(name, imageURL);
+            return;
+        }
+
         AnimalNode nodeParent = breathFirstSearch(parent);
         if (nodeParent == null) {
             JSONLogger.err("Animal category does not exist.", new Pair<>("Category", parent));

@@ -12,6 +12,12 @@
             },
             "Rabbits": {
                 "Rabbit": "../../resources/images/rabbit.jpg"
+            },
+            "Horses": {
+                "Horse": "../../resources/images/horse.jpg"
+            },
+            "Apes": {
+                "orangutan": "../../resources/images/orangutan.jpg"
             }
         }
     }

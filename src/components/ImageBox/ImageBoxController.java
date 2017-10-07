@@ -76,7 +76,7 @@ public class ImageBoxController extends AbstractController {
         }
 
         imageButton.setOnAction((event -> {
-            System.out.println("Hello world!");
+            model.increaseIterations();
         }));
 
     }

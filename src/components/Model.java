@@ -1,6 +1,7 @@
 package components;
 
 import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,46 +29,44 @@ public class Model {
     };
     private AnimalTree animals;
     private Map<ImageBoxId, StringProperty> currentAnimals;
+    private JsonNode imageCombinationsNode;
+    private int iterations;
 
     public Model() {
-        // Setup the connection between all our animal images
-        animals = new AnimalTree();
-        buildAnimalTree("../resources/AnimalTree.json");
-
-        String currentQuery = "";
+        currentAnimals = new HashMap<>();
+        JsonParser jsonParser = null;
+        URL path = getClass().getResource("../resources/ImageCombinations.json");
         try {
-            currentAnimals = new HashMap<>();
-            currentQuery = "Bears";
-            currentAnimals.put(ImageBoxId.TOP_LEFT,
-                    new SimpleStringProperty(animals.getAnimalImages(currentQuery).get(0)));
-            currentQuery = "Giraffes";
-            currentAnimals.put(ImageBoxId.TOP_RIGHT,
-                    new SimpleStringProperty(animals.getAnimalImages(currentQuery).get(0)));
-            currentQuery = "Pandas";
-            currentAnimals.put(ImageBoxId.BOTTOM_LEFT,
-                    new SimpleStringProperty(animals.getAnimalImages(currentQuery).get(0)));
-            currentQuery = "Rabbits";
-            currentAnimals.put(ImageBoxId.BOTTOM_RIGHT,
-                    new SimpleStringProperty(animals.getAnimalImages(currentQuery).get(0)));
+            jsonParser = new JsonFactory().createParser(path);
+            jsonParser.setCodec(new ObjectMapper());
+            imageCombinationsNode = jsonParser.readValueAsTree();
         } catch (NullPointerException e) {
-            JSONLogger.err("Querying Animal images that don't exist.", new Pair<>("Query", currentQuery));
-            currentAnimals = new HashMap<>();
+            JSONLogger.err("File Not Found.", new Pair<>("File", path.toExternalForm()));
+        } catch (IOException e) {
+            JSONLogger.err("Parsing Error.", new Pair<>("File", path.toExternalForm()));
         }
+
+        generateImageCombination(iterations);
+
 
     }
 
+    public void increaseIterations() {
+/*        iterations++;*/
+        generateImageCombination(iterations);
+    }
+
     private void buildAnimalTree(String url) {
-        URL path = null;
+        URL path = getClass().getResource(url);;
         try {
-            path = getClass().getResource(url);
+            animals = new AnimalTree();
 
             JsonParser jsonParser = new JsonFactory().createParser(path);
             jsonParser.setCodec(new ObjectMapper());
             JsonNode jsonNode = jsonParser.readValueAsTree();
 
-            Queue<JsonNode> animalQueue = new LinkedList<>() {{
-                add(jsonNode);
-            }};
+            Queue<JsonNode> animalQueue = new LinkedList<>();
+            animalQueue.add(jsonNode);
 
             Queue<String> parentQueue = new LinkedList<>() {{
                 add(null);
@@ -85,25 +84,54 @@ public class Model {
                         animalQueue.add(entry.getValue());
                     } else {
                         animals.addAnimal(
-                            entry.getKey(),
-                            entry.getValue().toString().replace("\"", ""),
-                            parentQueue.poll()
+                                entry.getKey(),
+                                entry.getValue().toString().replace("\"", ""),
+                                parentQueue.poll()
                         );
                     }
 
                 }
 
             }
-
-        } catch (FileNotFoundException e) {
+        } catch (NullPointerException e) {
             JSONLogger.err("File Not Found.", new Pair<>("File", path.toExternalForm()));
         } catch (IOException e) {
-            JSONLogger.err("JSON parsing error.", new Pair<>("File", path.toExternalForm()));
+            JSONLogger.err("Parsing Error.", new Pair<>("File", path.toExternalForm()));
+        }
+
+
+    }
+
+    private void generateImageCombination(int iteration) {
+        buildAnimalTree("../resources/AnimalTree.json");
+        int i = 0;
+        String currentQuery = "";
+        try {
+            for (ImageBoxId id : ImageBoxId.values()) {
+                currentQuery = imageCombinationsNode.get(
+                        String.valueOf(iteration)).get(iteration).toString().replace("\"", "");
+                if (currentAnimals.get(id) == null) {
+                    currentAnimals.put(id, new SimpleStringProperty(animals.getAnimalImages(currentQuery).get(0)));
+                } else {
+                    currentAnimals.get(id).set(animals.getAnimalImages(currentQuery).get(0));
+                }
+                String response = animals.getLastQueriedAnimal();
+                System.out.println(animals.getLastQueriedAnimal());
+                animals.removeAnimal(response);
+                i++;
+            }
+        } catch (NullPointerException e) {
+            JSONLogger.warn("Querying animal images that don't exist.", new Pair<>("Query", currentQuery));
         }
     }
 
     public Map<ImageBoxId, StringProperty> getCurrentAnimals() {
-        return Collections.unmodifiableMap(currentAnimals);
+        try {
+            return Collections.unmodifiableMap(currentAnimals);
+        } catch (NullPointerException e) {
+            JSONLogger.err("Animal combinations not initialized.");
+        }
+        return null;
     }
 
 }

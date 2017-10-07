@@ -11,6 +11,7 @@ import java.util.Queue;
 
 public class AnimalTree {
     private AnimalNode root;
+    private String lastQueriedAnimal;
 
     public AnimalTree() {
 
@@ -30,6 +31,24 @@ public class AnimalTree {
         nodeParent.addChild(new AnimalNode(name, imageURL, nodeParent));
     }
 
+    public void removeAnimal(String name) {
+        AnimalNode query = breathFirstSearch(name);
+        if (query == null) {
+            JSONLogger.warn(
+                "Trying to remove an animal that does not exist.",
+                new Pair<>("Animal", name), new Pair<>("Class",
+                this.getClass().getName())
+            );
+        } else if (query == this.root) {
+            this.root = null;
+        } else {
+            query.getParent().getChildren().remove(query);
+            if (query.getParent().getChildren().size() == 0) {
+                removeAnimal(query.getParent().getName());
+            }
+        }
+    }
+
     public List<String> getAnimalImages(String name) {
         AnimalNode queryNode = breathFirstSearch(name);
         return getAnimalImages(queryNode);
@@ -43,7 +62,12 @@ public class AnimalTree {
             Collections.shuffle(queryNode.getChildren());
             return getAnimalImages(queryNode.getChildren().get(0));
         }
+        lastQueriedAnimal = queryNode.getName();
         return queryNode.getImages();
+    }
+
+    public String getLastQueriedAnimal() {
+        return lastQueriedAnimal;
     }
 
     private AnimalNode breathFirstSearch(String name) {

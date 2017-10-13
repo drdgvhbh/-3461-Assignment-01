@@ -7,6 +7,7 @@
 .idea/codeStyleSettings.xml
 .idea/dictionaries/**
 .idea/misc.xml
+.idea/compiler.xml
 
 # Windows crap
 Thumbs.db

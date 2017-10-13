@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import components.Data.SessionData;
 import components.ImageBox.ImageBoxController;
-import components.Iteration;
 import components.Model;
 import components.ProgressBox.ProgressBoxController;
 import components.PromptBox.PromptBoxController;
@@ -89,9 +88,6 @@ public class Program extends Application implements Initializable {
                 return;
             }
             if (newValue.intValue() >= Model.ITERATIONS_PER_PHASE) {
-                // Stop any existing timers
-               /* model.getTimer().stop();*/
-
                 // Lets change phases because phase one is over.
                 if (model.getState() == Model.State.PHASE_1) {
                     model.setState(Model.State.PHASE_2);
@@ -111,12 +107,6 @@ public class Program extends Application implements Initializable {
                 model.resetIterations();
                 model.resetAnimalImages();
                 model.resetAnimalNames();
-            }
-        });
-
-        model.stateProperty().addListener((observable, oldValue, newValue) -> {
-            if (oldValue == Model.State.MENU && newValue == Model.State.PHASE_1) {
-                Iteration.run(model);
             }
         });
 

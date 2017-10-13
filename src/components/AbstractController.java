@@ -5,7 +5,7 @@ import javafx.util.Pair;
 import util.JSONLogger;
 
 public abstract class AbstractController implements Initializable {
-    private Model model;
+    protected Model model;
 
     /**
      * Initializes the controller's dependencies with the application's {@code model}.

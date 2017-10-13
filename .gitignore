@@ -1,10 +1,12 @@
 #Intellj
 /out/
+/docs/
 
 # User-specific stuff:
 .idea/**/workspace.xml
 .idea/codeStyleSettings.xml
 .idea/dictionaries/**
+.idea/misc.xml
 
 # Windows crap
 Thumbs.db

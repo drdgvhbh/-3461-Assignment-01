@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.Rectangle?>
+<Rectangle fx:id="progressBox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="18.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="18.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.ProgressBox.ProgressBoxController" />

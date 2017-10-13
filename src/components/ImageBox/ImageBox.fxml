@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -24,5 +25,21 @@
             <Font name="Cambria" size="32.0" />
          </font>
       </Button>
+      <ImageView fx:id="labelBackground" fitHeight="25.0" fitWidth="160.0" opacity="0.75" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="BOTTOM_CENTER">
+         <image>
+            <Image url="@../../resources/images/white_rectangle.jpg" />
+         </image>
+         <StackPane.margin>
+            <Insets bottom="1.0" />
+         </StackPane.margin>
+      </ImageView>
+      <Text fx:id="label" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="160.0" StackPane.alignment="BOTTOM_CENTER">
+         <font>
+            <Font name="Georgia" size="20.0" />
+         </font>
+         <StackPane.margin>
+            <Insets bottom="1.0" />
+         </StackPane.margin>
+      </Text>
    </children>
 </StackPane>

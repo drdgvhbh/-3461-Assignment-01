@@ -8,6 +8,6 @@
 
 <Button fx:id="startButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="99.0" text="Start" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.StartButton.StartButtonController">
     <font>
-        <Font size="24.0" />
+        <Font name="Georgia" size="26.0" />
     </font>
 </Button>

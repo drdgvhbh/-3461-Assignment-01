@@ -1,49 +1,46 @@
 package components.AnimalTree;
 
-import javafx.scene.image.Image;
-
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AnimalNode {
     private String name;
     private AnimalNode parent;
     private List<AnimalNode> children;
-    private List<String> imageURLs;
+    private List<URL> imageURLs;
 
-    protected AnimalNode(String name, String imageURL) {
+    AnimalNode(String name, List<URL> imageURL) {
         this(name, imageURL, null);
     }
 
-    protected AnimalNode(String name, String imageURL, AnimalNode parent) {
+    AnimalNode(String name, List<URL> imageURLs, AnimalNode parent) {
         this.name = name;
         this.parent = parent;
         this.children = new ArrayList<>();
         this.imageURLs = new ArrayList<>(1);
-        if (imageURL != null) {
-            this.imageURLs.add(imageURL);
+        if (imageURLs != null) {
+            this.imageURLs = imageURLs;
         }
     }
 
-    public String getName() {
+    String getName() {
         return this.name;
     }
 
-    public AnimalNode getParent() {
+    AnimalNode getParent() {
         return this.parent;
     }
 
-    public void addChild(AnimalNode node) {
+    void addChild(AnimalNode node) {
         children.add(node);
     }
 
-    public List<AnimalNode> getChildren() {
+    List<AnimalNode> getChildren() {
         return this.children;
     }
 
-    public List<String> getImages() {
+    List<URL> getImages() {
         return this.imageURLs;
     }
 

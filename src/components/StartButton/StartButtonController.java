@@ -17,7 +17,9 @@ public class StartButtonController extends AbstractController {
         super.initModel(model);
 
         startButton.setOnAction((event -> {
-
+            model.setState(Model.State.PHASE_1);
+/*            model.nextIteration();
+            model.setTimer(model.startTimer());*/
         }));
     }
 

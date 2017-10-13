@@ -1,52 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?language JavaScript?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
-<?import java.util.ArrayList?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.*?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="405.0" stylesheets="@../resources/stylesheets/Program.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Program">
    <bottom>
       <Pane prefHeight="36.0" prefWidth="405.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="48.0" prefWidth="540.0" spacing="24.0">
+            <HBox alignment="CENTER" layoutY="8.0" prefHeight="29.0" prefWidth="405.0" spacing="18.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="24.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="141.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="24.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="24.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="24.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="24.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="24.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="24.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="24.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="24.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" stroke="BLACK" strokeType="INSIDE" styleClass="progressBox" width="24.0" />
+                   <fx:include fx:id="progressBox1" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox2" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox3" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox4" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox5" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox6" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox7" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox8" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox9" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox10" source="../components/ProgressBox/ProgressBox.fxml" />
                </children>
             </HBox>
          </children>
       </Pane>
    </bottom>
    <top>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="180.0" prefWidth="405.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="167.0" prefWidth="405.0" BorderPane.alignment="CENTER">
         <items>
             <ToolBar prefHeight="45.0" prefWidth="300.0">
               <items>
                   <fx:include fx:id="startButton" source="../components/StartButton/StartButton.fxml" />
               </items>
             </ToolBar>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.5" prefWidth="403.0" />
+            <fx:include fx:id="promptBox" source="../components/PromptBox/PromptBox.fxml" />
         </items>
       </SplitPane>
    </top>
    <center>
-      <FlowPane prefHeight="430.0" prefWidth="405.0" prefWrapLength="300.0" styleClass="centerBackground" BorderPane.alignment="CENTER">
+      <FlowPane prefHeight="0.0" prefWidth="405.0" prefWrapLength="300.0" styleClass="centerBackground" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>

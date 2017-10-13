@@ -1,0 +1,69 @@
+{
+    "Animals": {
+        "Mammals": {
+            "Bears": {
+                "Brown Bear": ["/resources/images/brown_bear.jpg", "/resources/images/brown_bear_2.jpg",
+                    "/resources/images/brown_bear_3.jpg"]
+            },
+            "Giraffe": ["/resources/images/giraffe.jpg", "/resources/images/giraffe_2.jpg",
+                "/resources/images/giraffe_3.jpg"],
+            "Panda": ["/resources/images/panda.jpg", "/resources/images/panda_2.jpg", "/resources/images/panda_3.jpg"],
+            "Rabbit": ["/resources/images/rabbit.jpg", "/resources/images/rabbit_2.jpg",
+                "/resources/images/rabbit_3.jpg"],
+            "Horse": ["/resources/images/horse.jpg", "/resources/images/horse_2.jpg", "/resources/images/horse_3.jpg"],
+            "Orangutan": ["/resources/images/orangutan.jpg", "/resources/images/orangutan_2.jpg",
+                "/resources/images/orangutan_3.jpg"],
+            "Zebra": ["/resources/images/zebra.jpg", "/resources/images/zebra_2.jpg", "/resources/images/zebra_3.jpg"],
+            "Felines": {
+                "Cat": ["/resources/images/cat.jpg", "/resources/images/cat_2.jpg", "/resources/images/cat_3.jpg"],
+                "Lion": ["/resources/images/lion.jpg", "/resources/images/lion_2.jpg", "/resources/images/lion_3.jpg"],
+                "Jaguar": ["/resources/images/jaguar.jpg", "/resources/images/jaguar_2.jpg",
+                    "/resources/images/jaguar_3.jpg"],
+                "Tiger": ["/resources/images/tiger.jpg", "/resources/images/tiger_2.jpg",
+                    "/resources/images/tiger_3.jpg"],
+                "Cougar": ["/resources/images/cougar.jpg", "/resources/images/cougar_2.jpg"]
+            },
+            "Canines": {
+                "Fox": ["/resources/images/fox.jpg", "/resources/images/fox_2.jpg", "/resources/images/fox_3.jpg"],
+                "Dog": ["/resources/images/dog.jpg", "/resources/images/dog_2.jpg", "/resources/images/dog_3.jpg"],
+                "Wolf": ["/resources/images/wolf.jpg", "/resources/images/wolf_2.jpg", "/resources/images/wolf_3.jpg"]
+            },
+            "Rhinoceros": ["/resources/images/rhinoceros.jpg", "/resources/images/rhinoceros_2.jpg",
+                "/resources/images/rhinoceros_3.jpg"],
+            "Marine Mammal": {
+                "Dolphin": ["/resources/images/dolphin.jpg", "/resources/images/dolphin_2.jpg",
+                    "/resources/images/dolphin_3.jpg"],
+                "Whale": ["/resources/images/whale.jpg", "/resources/images/whale_2.jpg"]
+            }
+        },
+        "Insects": {
+            "Ant": ["/resources/images/ant.jpg", "/resources/images/ant_2.jpg"],
+            "Bee": ["/resources/images/bee.jpg", "/resources/images/bee_2.jpg"],
+            "Beetle": ["/resources/images/beetle.jpg", "/resources/images/beetle_2.jpg"],
+            "Spider": ["/resources/images/spider.jpg", "/resources/images/spider_2.jpg"],
+            "Fly": ["/resources/images/fly.jpg", "/resources/images/fly_2.jpg"],
+            "Ladybug": ["/resources/images/ladybug.jpg", "/resources/images/ladybug_2.jpg"]
+        },
+        "Birds": {
+            "Crow": ["/resources/images/crow.jpg", "/resources/images/crow_2.jpg"],
+            "Woodpecker": ["/resources/images/woodpecker.jpg", "/resources/images/woodpecker_2.jpg"],
+            "Pigeon": ["/resources/images/pigeon.jpg", "/resources/images/pigeon_2.jpg"],
+            "Blue Jay": ["/resources/images/blueJay.jpg", "/resources/images/blueJay_2.jpg"],
+            "Parrot": ["/resources/images/parrot.jpg", "/resources/images/parrot_2.jpg"]
+        },
+        "Fishes": {
+            "Goldfish": ["/resources/images/goldfish.jpg", "/resources/images/goldfish_2.jpg"],
+            "Shark": ["/resources/images/shark.jpg", "/resources/images/shark_2.jpg"],
+            "Jellyfish": ["/resources/images/jellyfish.jpg", "/resources/images/jellyfish_2.jpg"],
+            "Eel": ["/resources/images/eel.jpg", "/resources/images/eel_2.jpg"]
+        },
+        "Reptiles": {
+            "Crocodile": ["/resources/images/crocodile.jpg", "/resources/images/crocodile_2.jpg"],
+            "Snakes": {
+                "Cobra": ["/resources/images/cobra.jpg", "/resources/images/cobra_2.jpg"]
+            },
+            "Turtle": ["/resources/images/turtle.jpg", "/resources/images/turtle_2.jpg"]
+        }
+    }
+
+}

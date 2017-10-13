@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Font?>
+
+<Button fx:id="startButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="99.0" text="Start" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.StartButton.StartButtonController">
+    <font>
+        <Font name="Georgia" size="26.0" />
+    </font>
+</Button>

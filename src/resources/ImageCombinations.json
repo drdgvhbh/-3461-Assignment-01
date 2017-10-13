@@ -1,0 +1,12 @@
+{
+  "0" : ["Animals", "Animals", "Animals", "Animals"],
+  "1" : ["Mammals", "Mammals", "Mammals", "Mammals"],
+  "2" : ["Fishes", "Fishes", "Animals", "Animals"],
+  "3" : ["Mammals", "Insects", "Marine Mammal", "Reptiles"],
+  "4" : ["Felines", "Felines", "Felines", "Felines"],
+  "5" : ["Animals", "Animals", "Animals", "Animals"],
+  "6" : ["Birds", "Birds", "Birds", "Birds"],
+  "7" : ["Insects", "Insects", "Insects", "Insects"],
+  "8" : ["Mammals", "Mammals", "Mammals", "Mammals"],
+  "9" : ["Animals", "Animals", "Animals", "Animals"]
+}

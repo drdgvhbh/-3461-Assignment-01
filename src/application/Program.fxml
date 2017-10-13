@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?language JavaScript?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="405.0" stylesheets="@../resources/stylesheets/Program.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Program">
+   <bottom>
+      <Pane prefHeight="36.0" prefWidth="405.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" layoutY="8.0" prefHeight="29.0" prefWidth="405.0" spacing="18.0">
+               <children>
+                   <fx:include fx:id="progressBox1" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox2" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox3" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox4" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox5" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox6" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox7" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox8" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox9" source="../components/ProgressBox/ProgressBox.fxml" />
+                   <fx:include fx:id="progressBox10" source="../components/ProgressBox/ProgressBox.fxml" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </bottom>
+   <top>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="167.0" prefWidth="405.0" BorderPane.alignment="CENTER">
+        <items>
+            <ToolBar prefHeight="45.0" prefWidth="300.0">
+              <items>
+                  <fx:include fx:id="startButton" source="../components/StartButton/StartButton.fxml" />
+              </items>
+            </ToolBar>
+            <fx:include fx:id="promptBox" source="../components/PromptBox/PromptBox.fxml" />
+        </items>
+      </SplitPane>
+   </top>
+   <center>
+      <FlowPane prefHeight="0.0" prefWidth="405.0" prefWrapLength="300.0" styleClass="centerBackground" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+             <fx:include fx:id="imageBox1" source="../components/ImageBox/ImageBox.fxml" />
+             <fx:include fx:id="imageBox2" source="../components/ImageBox/ImageBox.fxml" />
+             <fx:include fx:id="imageBox3" source="../components/ImageBox/ImageBox.fxml" />
+             <fx:include fx:id="imageBox4" source="../components/ImageBox/ImageBox.fxml" />
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+      </FlowPane>
+   </center>
+</BorderPane>

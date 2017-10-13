@@ -1,0 +1,16 @@
+.imageBoxButton {
+    -fx-border-color: antiquewhite;
+    -fx-border-width: 200%;
+}
+
+.imageBoxButton:hover {
+    -fx-border-color: black;
+    -fx-border-width: 150%;
+}
+
+.imageBoxButton:pressed {
+    -fx-opacity: 98%;
+    -fx-translate-y: 150%;
+    -fx-border-color: antiquewhite;
+    -fx-border-width: 300%;
+}

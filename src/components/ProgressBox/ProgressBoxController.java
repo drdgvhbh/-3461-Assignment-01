@@ -10,10 +10,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProgressBoxController extends AbstractController {
+    /**
+     * Represent a box showing whether the user has completed an <code>iteration</code>
+     */
     @FXML
     Rectangle progressBox;
-
-    private Model.ProgressBoxId id;
 
     @Override
     public void initModel(Model model) throws IllegalStateException {
@@ -21,11 +22,19 @@ public class ProgressBoxController extends AbstractController {
 
     }
 
+    /**
+     * Initializes the controller's dependencies with this application's {@code Model}.
+     *
+     * <p>Links the <code>progress box</code> to the state of the state of this <code>Model</code>.</p>
+     *
+     * @param model The application state.
+     * @param promptBoxId The identifier for this controller
+     * @throws IllegalStateException The model is already initialized.
+     */
     public void initModel(Model model, Model.ProgressBoxId promptBoxId) throws IllegalStateException {
         super.initModel(model);
-        this.id = promptBoxId;
 
-        model.getActiveProgressBoxes().get(this.id).addListener((observable, oldValue, newValue) -> {
+        model.getActiveProgressBoxes().get(promptBoxId).addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 progressBox.setFill(Color.DEEPSKYBLUE);
             } else {

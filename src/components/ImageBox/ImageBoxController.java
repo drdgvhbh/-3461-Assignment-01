@@ -23,18 +23,29 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ImageBoxController extends AbstractController {
+    /**
+     * Represents this controller's identification value.
+     */
     private Model.ImageBoxControllerId id;
 
+    /**
+     * Represents a button that displays an animal image.
+     */
     @FXML
     private Button imageButton;
 
+    /**
+     * Represents a rectangular box to increase the visibility of {@link ImageBoxController#label}.
+     */
     @FXML
     private ImageView labelBackground;
 
+    /**
+     * Represents a text message describing the animal image being displayed on this button.
+     */
     @FXML
     private Text label;
 
-    private ChangeListener<String> imageButtonListener;
 
     @Override
     public void initModel(Model model) throws IllegalStateException {
@@ -51,7 +62,7 @@ public class ImageBoxController extends AbstractController {
         if (imgURL != null) {
             try {
                 setButtonImage(imgURL.get());
-                imgURL.addListener(imageButtonListener);
+                imgURL.addListener((observable, oldValue, newValue) -> setButtonImage(newValue));
 
                 model.stateProperty().addListener((observable, oldValue, newValue) -> {
                     if (newValue == Model.State.PHASE_2) {
@@ -88,6 +99,9 @@ public class ImageBoxController extends AbstractController {
                 if (model.getTimer() != null) {
                     model.getTimer().stop();
                 }
+                JSONLogger.info("User pressed button", new Pair<>("Image Box Id", this.id.toString()),
+                    new Pair<>("Chosen Answer", model.getCurrentIterationData().getChosenAnswer()),
+                    new Pair<>("Correct Answer", model.getCorrectAnimalName()));
                 model.getSessionData().addIteration(model.getCurrentIterationData());
                 model.increaseIteration();
                 runIteration();
@@ -156,12 +170,6 @@ public class ImageBoxController extends AbstractController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        imageButtonListener = new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                setButtonImage(newValue);
-            }
-        };
     }
 
     private void setButtonImage(String url) {

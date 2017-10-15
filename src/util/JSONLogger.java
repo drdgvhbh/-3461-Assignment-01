@@ -6,28 +6,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import javafx.util.Pair;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class JSONLogger {
     @SafeVarargs
     public static void err(String message, Pair<String, Object>... args) {
-        System.out.println("ERROR: " + message);
+        System.out.printf("[%02d:%02d:%02d:%02d] ERROR: %s\n", Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+            Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND),
+            Calendar.getInstance().get(Calendar.MILLISECOND) , message);
         JSONLogger.log(args);
     }
 
     @SafeVarargs
     public static void info(String message, Pair<String, Object>... args) {
-        System.out.println("INFO: " + message);
+        System.out.printf("[%02d:%02d:%02d:%02d] INFO: %s\n", Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+            Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND),
+            Calendar.getInstance().get(Calendar.MILLISECOND) , message);
         JSONLogger.log(args);
     }
 
     @SafeVarargs
     public static void warn(String message, Pair<String, Object>... args) {
-        System.out.println("WARNING: " + message);
+        System.out.printf("[%02d:%02d:%02d:%02d] WARNING: %s\n", Calendar.getInstance().get(Calendar.HOUR_OF_DAY    ),
+            Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND),
+            Calendar.getInstance().get(Calendar.MILLISECOND) , message);
         JSONLogger.log(args);
     }
 
     @SafeVarargs
     public static void debug(String message, Pair<String, Object>... args) {
-        System.out.println("DEBUG: " + message);
+        System.out.printf("[%02d:%02d:%02d:%02d] DEBUG: %s\n", Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+            Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND),
+            Calendar.getInstance().get(Calendar.MILLISECOND) , message);
         JSONLogger.log(args);
     }
 

@@ -24,6 +24,7 @@ import java.util.List;
  * Represents the state of this application.
  */
 public class Model {
+    //region Fields
     /**
      * The number of iterations in {@link Model.State#PHASE_1} and {@link Model.State#PHASE_2}
      */
@@ -131,13 +132,25 @@ public class Model {
     private SessionData sessionData;
 
     /**
+     * Represents a hierarchy of animal categories.
+     *
+     * <p>The hierarchy refers to the is-a relationship of an animal. For example, a cat is-a feline and therefore,
+     * falls under the feline category.</p>
+     */
+    private AnimalTree animalTree;
+    //endregion
+
+    //region Constructors
+    /**
      * Initializes a new instance of the {@link Model} class.
      */
     public Model() {
-        currentIterationData = new IterationData();
-        iteration = new SimpleIntegerProperty(0);
         rnd = new Random();
+        iteration = new SimpleIntegerProperty(0);
+
+        currentIterationData = new IterationData();
         sessionData = new SessionData();
+
         activeProgressBoxes = new HashMap<>();
         for (ProgressBoxId id : ProgressBoxId.values()) {
             activeProgressBoxes.put(id, new SimpleBooleanProperty(false));
@@ -150,6 +163,7 @@ public class Model {
         currentScrambledAnimalNames = new SimpleObjectProperty<>();
         currentScrambledAnimalNames.set(new HashMap<>());
         currentAnimalImages = new HashMap<>();
+
         JsonParser jsonParser = null;
         URL path = getClass().getResource("/resources/ImageCombinations.json");
         try {
@@ -164,7 +178,9 @@ public class Model {
 
         generateImageCombination("Blanks", false);
     }
+    //endregion
 
+    //region Enums
     /**
      * Identification classifiers for {@link ImageBoxController}
      */
@@ -247,7 +263,7 @@ public class Model {
     }
 
     /**
-     * The states of this <code>Model</code>.
+     * The <code>states</code> of this <code>Model</code>.
      */
     public enum State {
         /**
@@ -270,7 +286,9 @@ public class Model {
          */
         PAUSED
     }
+    //endregion
 
+    //region Getters and Mutators
     /**
      * Gets the state of this <code>Model</code>.
      *
@@ -518,12 +536,17 @@ public class Model {
         return this.sessionData;
     }
 
-    /////////////////////////////////////////////////
-    private AnimalTree animalTree;
-
+    /**
+     * Gets the hierarchy of animal categories.
+     *
+     * <p>The hierarchy refers to the is-a relationship of an animal. For example, a cat is-a feline and therefore,
+     * falls under the feline category.</p>
+     * @return the hierarchy of animals
+     */
     public AnimalTree getAnimalTree() {
         return this.animalTree;
     }
+    //endregion
 
     /**
      * Resets this <code>Model</code> to only contain placeholder button images.
@@ -555,9 +578,14 @@ public class Model {
         }
     }
 
+    /**
+     * Reconstructs the animal hierarchy and stores the data in {@link Model#animalTree}.
+     *
+     * <p>The animal hierarchy is defined in <code>/resources/AnimalTree.json</code>.</p>
+     */
     public void buildAnimalTree() {
+        // The file that contains hierarchy data
         URL path = getClass().getResource("/resources/AnimalTree.json");
-        ;
         try {
             animalTree = new AnimalTree();
 
@@ -571,6 +599,8 @@ public class Model {
             Queue<String> parentQueue = new LinkedList<>() {{
                 add(null);
             }};
+
+            // Iterate through the file using a breadth-first search and add each level to the hierarchy
             while (!animalQueue.isEmpty()) {
                 JsonNode node = animalQueue.remove();
                 Iterator<Map.Entry<String, JsonNode>> it = node.fields();
@@ -583,16 +613,17 @@ public class Model {
                         }
                         animalQueue.add(entry.getValue());
                     } else {
+                        // If the node is a leaf, then it must have a image URL. Store it.
                         List<URL> urls = new ArrayList<>();
-                         if (entry.getValue().isArray()) {
-                             for (final JsonNode url : entry.getValue()) {
-                                 urls.add(getClass().getResource(
-                                     url.toString().replace("\"", "")));
-                             }
-                         } else {
-                             urls.add(getClass().getResource(
-                                 entry.getValue().toString().replace("\"", "")));
+                        if (entry.getValue().isArray()) {
+                            for (final JsonNode url : entry.getValue()) {
+                                urls.add(getClass().getResource(
+                                url.toString().replace("\"", "")));
                          }
+                        } else {
+                            urls.add(getClass().getResource(
+                                entry.getValue().toString().replace("\"", "")));
+                        }
                         animalTree.addAnimal(
                             entry.getKey(),
                             urls,
@@ -613,6 +644,17 @@ public class Model {
 
     }
 
+    /**
+     * Generates a combination of four images based on the current <code>iteration</code> using data from the
+     * animal hierarchy.
+     *
+     * <p>Each iteration is mapped to a combination query that is specified in
+     * <code>/resources/ImageCombinations.json</code>.</p>
+     *
+     * @param iteration the current iteration
+     *
+     * @see Model#buildAnimalTree()
+     */
     public void generateImageCombination(String iteration) {
         generateImageCombination(iteration, true);
     }
@@ -647,9 +689,11 @@ public class Model {
                     if (currentAnimalImages.get(id) == null) {
                         currentAnimalImages.put(
                             id,
-                            new SimpleStringProperty(animalTree.getAnimalImages(currentQuery).get(0).toExternalForm()));
+                            new SimpleStringProperty(animalTree.getAnimalImages(
+                                currentQuery).get(0).toExternalForm()));
                     } else {
-                        currentAnimalImages.get(id).set(animalTree.getAnimalImages(currentQuery).get(0).toExternalForm());
+                        currentAnimalImages.get(id).set(animalTree.getAnimalImages(
+                            currentQuery).get(0).toExternalForm());
                     }
                     if (currentAnimalNames.get(id) == null) {
                         currentAnimalNames.put(id, new SimpleStringProperty(animalTree.getLastQueriedAnimal()));

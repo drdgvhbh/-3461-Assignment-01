@@ -2,6 +2,7 @@ package application;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import components.Data.DataAnalyzer;
 import components.Data.SessionData;
 import components.ImageBox.ImageBoxController;
 import components.Model;
@@ -74,6 +75,8 @@ public class Program extends Application implements Initializable {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+        JSONLogger.info("Application started");
+        generateDataAnalysis();
 
     }
 
@@ -90,6 +93,7 @@ public class Program extends Application implements Initializable {
             if (newValue.intValue() >= Model.ITERATIONS_PER_PHASE) {
                 // Lets change phases because phase one is over.
                 if (model.getState() == Model.State.PHASE_1) {
+
                     model.setState(Model.State.PHASE_2);
                 } else if (model.getState() == Model.State.PHASE_2) {
                     // Lets go back to the menu because phase two is over.
@@ -128,6 +132,14 @@ public class Program extends Application implements Initializable {
         startButtonController.initModel(model);
         promptBoxController.initModel(model);
 
+        JSONLogger.info("Components initialized");
+
+        // Loggers
+        model.stateProperty().addListener((observable, oldValue, newValue) -> {
+            JSONLogger.info("State Change", new Pair<>("Old State", oldValue.toString()),
+                new Pair<>("New State", newValue.toString()));
+        });
+
     }
 
     public void buildOutputData(Model model) {
@@ -149,5 +161,26 @@ public class Program extends Application implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        JSONLogger.info("Output file created", new Pair<>("File",
+            model.getSessionData().getDate().hashCode() + ".json"));
+    }
+
+    public void generateDataAnalysis() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        DataAnalyzer analyzer = new DataAnalyzer();
+        String json = gson.toJson(new DataAnalyzer());
+        try {
+
+            FileWriter writer = new FileWriter("Analysis" + analyzer.hashCode() + ".json");
+            writer.write(json);
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JSONLogger.info("Output file created", new Pair<>("File",
+            "Analysis" + analyzer.hashCode() + ".json"));
     }
 }

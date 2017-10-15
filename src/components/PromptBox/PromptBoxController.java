@@ -11,12 +11,23 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PromptBoxController extends AbstractController {
+    /**
+     * The image that represents the <code>prompt text</code>.
+     */
     @FXML
     ImageView promptImage;
 
+    /**
+     * The text message that represents the image the user needs to match.
+     */
     @FXML
     Text promptText;
 
+    /**
+     * {@inheritDoc}
+     *
+     *  <p>Links the <code>prompt image</code> and <code>prompt text </code> to the state of this <code>Model</code>.</p>
+     */
     @Override
     public void initModel(Model model) throws IllegalStateException {
         super.initModel(model);

@@ -10,6 +10,9 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Represents a prompt box controller.
+ */
 public class PromptBoxController extends AbstractController {
     /**
      * The image that represents the <code>prompt text</code>.
@@ -32,10 +35,12 @@ public class PromptBoxController extends AbstractController {
     public void initModel(Model model) throws IllegalStateException {
         super.initModel(model);
 
+        // Change the prompt text when the correct name is updated
         model.correctAnimalNameProperty().addListener((observable, oldValue, newValue) -> {
             promptText.setText(newValue);
         });
 
+        // Change the prompt image when the animal images are updated
         model.similarImageURLProperty().addListener((observable, oldValue, newValue) -> {
             promptImage.setImage(new Image(
                 newValue,

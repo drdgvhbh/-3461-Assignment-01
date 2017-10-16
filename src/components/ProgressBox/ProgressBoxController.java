@@ -9,6 +9,9 @@ import javafx.scene.shape.Rectangle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Represents a progress box controller.
+ */
 public class ProgressBoxController extends AbstractController {
     /**
      * Represent a box showing whether the user has completed an <code>iteration</code>
@@ -34,6 +37,7 @@ public class ProgressBoxController extends AbstractController {
     public void initModel(Model model, Model.ProgressBoxId promptBoxId) throws IllegalStateException {
         super.initModel(model);
 
+        // Light up the boxes depending on the user's progress
         model.getActiveProgressBoxes().get(promptBoxId).addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 progressBox.setFill(Color.DEEPSKYBLUE);

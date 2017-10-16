@@ -15,20 +15,65 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Represents a tool for analyzing the raw data produced by this application. The purpose of this class is to be
+ * converted into a JSON file using GSON.
+ */
 public class DataAnalyzer {
+    /**
+     * Represents the number of correct iterations for each iteration in Phase 1.
+     */
     private Map<String, Integer> phaseOneCorrectByIteration;
+
+    /**
+     * Represents the number of correct iterations for each iteration in Phase 2.
+     */
     private Map<String, Integer> phaseTwoCorrectByIteration;
+
+    /**
+     * The total sample size.
+     */
     private int totalSampleSize;
+
+    /**
+     * The total number of iterations.
+     */
     private int totalIterations;
+
+    /**
+     * Number of times an animal was prompted to the user in Phase 1.
+     */
     private Map<String, Integer> numberOfTimesAnimalPromptedP1;
+
+    /**
+     * Number of times an animal was correctly matched by to the user in Phase 1.
+     */
     private Map<String, Integer> numberOfTimesAnimalCorrectlyChosenP1;
+
+    /**
+     * Number of times an animal was prompted to the user in Phase 2.
+     */
     private Map<String, Integer> numberOfTimesAnimalPromptedP2;
+
+    /**
+     * Number of times an animal was correctly matched by to the user in Phase 2.
+     */
     private Map<String, Integer> numberOfTimesAnimalCorrectlyChosenP2;
 
+    /**
+     * Total number of correct answers in Phase 1.
+     */
     private int totalCorrectPhaseOneAnswers;
+
+    /**
+     * Total number of correct answers in Phase 2.
+     */
     private int totalCorrectPhaseTwoAnswers;
 
 
+    /**
+     * Initializes a new instance of the {@link DataAnalyzer} class.
+     */
     public DataAnalyzer() {
         phaseOneCorrectByIteration = new HashMap<>();
         phaseTwoCorrectByIteration = new HashMap<>();
@@ -41,6 +86,7 @@ public class DataAnalyzer {
         totalCorrectPhaseOneAnswers = 0;
         totalCorrectPhaseTwoAnswers = 0;
 
+        // Read the files
         URI path = null;
         String pathString = "/resources/results";
         try {

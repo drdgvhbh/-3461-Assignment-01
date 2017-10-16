@@ -4,6 +4,9 @@ import javafx.fxml.Initializable;
 import javafx.util.Pair;
 import util.JSONLogger;
 
+/**
+ * Represents an FXML controller.
+ */
 public abstract class AbstractController implements Initializable {
     /**
      * Represents the state of this application.
@@ -11,7 +14,7 @@ public abstract class AbstractController implements Initializable {
     protected Model model;
 
     /**
-     * Initializes the controller's dependencies with this application's {@code Model}.
+     * Initializes the controller's dependencies with this application's <code>Model</code>.
      *
      * @param model The application state.
      * @throws IllegalStateException The model is already initialized.

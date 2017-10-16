@@ -11,6 +11,9 @@ import util.JSONLogger;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Represents a start button controller.
+ */
 public class StartButtonController extends AbstractController {
     /**
      * The button used to start the application.

@@ -1,6 +1,6 @@
-# Animal Recognition Game
+# AniSight
 
-Animal Recognition Game is a simple game to help you recognize different species of animals. There are two rounds consisting of 10 questions each. In each round, you need to click on the image that best matches the description. In the second round, the labels under the images may not actually represent what the image is. You have 3 seconds to answer each question. The goal of this game is to see the effect improper labelling has on your animal recognition ability. 
+AniSight is a simple game to help you recognize different species of animals. There are two rounds consisting of 10 questions each. In each round, you need to click on the image that best matches the description. In the second round, the labels under the images may not actually represent what the image is. You have 3 seconds to answer each question. The goal of this game is to see the effect improper labelling has on your animal recognition ability. 
 
 ## Getting Started
 
